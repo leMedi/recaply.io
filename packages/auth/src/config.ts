@@ -1,6 +1,6 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import type { DefaultSession, NextAuthConfig } from "next-auth";
-import Discord from "next-auth/providers/discord";
+import Google from "next-auth/providers/google";
 
 import { db, schema } from "@recaply/db";
 
@@ -19,7 +19,7 @@ export const authConfig = {
 		sessionsTable: schema.sessions,
 		verificationTokensTable: schema.verificationTokens,
 	}),
-	providers: [Discord],
+	providers: [Google],
 	callbacks: {
 		session: (opts) => {
 			if (!("user" in opts)) throw "unreachable with session strategy";

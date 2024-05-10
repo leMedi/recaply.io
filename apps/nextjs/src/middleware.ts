@@ -1,9 +1,14 @@
-export { auth as middleware } from "@recaply/auth";
+// export { auth as middleware } from "@recaply/auth";
 
 // Or like this if you need to do something here.
 // export default auth((req) => {
 //   console.log(req.auth) //  { session: { user: { ... } } }
 // })
+
+export const middleware = async (
+	req: Request,
+	next: () => Promise<Response>,
+) => {};
 
 // Read more: https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
 export const config = {

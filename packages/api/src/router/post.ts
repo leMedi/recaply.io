@@ -2,7 +2,6 @@ import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
 
 import { desc, eq, schema } from "@recaply/db";
-import { CreatePostSchema } from "@recaply/validators";
 
 import { protectedProcedure, publicProcedure } from "../trpc";
 
@@ -29,7 +28,7 @@ export const postRouter = {
 		}),
 
 	create: protectedProcedure
-		.input(CreatePostSchema)
+		.input(z.object({ title: z.string(), content: z.string() }))
 		.mutation(({ ctx, input }) => {
 			return ctx.db.insert(schema.post).values(input);
 		}),
