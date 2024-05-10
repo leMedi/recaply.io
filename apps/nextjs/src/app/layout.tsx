@@ -1,6 +1,6 @@
-import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import type { Metadata, Viewport } from "next";
 
 import { cn } from "@recaply/ui";
 import { ThemeProvider, ThemeToggle } from "@recaply/ui/theme";

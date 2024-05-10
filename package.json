@@ -12,21 +12,19 @@
     "db:push": "pnpm -F db push",
     "db:studio": "pnpm -F db studio",
     "dev": "turbo dev --parallel",
-    "format": "turbo format --continue -- --cache --cache-location node_modules/.cache/.prettiercache",
-    "format:fix": "turbo format --continue -- --write --cache --cache-location node_modules/.cache/.prettiercache",
-    "lint": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
-    "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
+    "format": "turbo format --continue",
+    "format:fix": "turbo format:fix --continue",
+    "lint": "turbo lint --continue",
+    "lint:fix": "turbo lint:fix --continue",
     "lint:ws": "pnpm dlx sherif@latest",
     "postinstall": "pnpm lint:ws",
     "typecheck": "turbo typecheck",
     "ui-add": "pnpm -F ui ui-add"
   },
   "devDependencies": {
-    "@recaply/prettier-config": "workspace:*",
+    "@biomejs/biome": "^1.7.3",
     "@turbo/gen": "^1.13.3",
-    "prettier": "^3.2.5",
     "turbo": "^1.13.3",
     "typescript": "^5.4.5"
-  },
-  "prettier": "@recaply/prettier-config"
+  }
 }
