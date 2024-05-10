@@ -4,9 +4,9 @@
  */
 import type { Config } from "tailwindcss";
 
-import baseConfig from "@acme/tailwind-config/web";
+import baseConfig from "@recaply/tailwind-config/web";
 
 export default {
-  content: ["./src/**/*.tsx"],
-  presets: [baseConfig],
+	content: ["./src/**/*.tsx"],
+	presets: [baseConfig],
 } satisfies Config;

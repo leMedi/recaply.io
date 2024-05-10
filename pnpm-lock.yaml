@@ -8,7 +8,7 @@ importers:
 
   .:
     devDependencies:
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:tooling/prettier
       '@turbo/gen':
@@ -30,16 +30,16 @@ importers:
         specifier: 0.30.0
         version: 0.30.0
     devDependencies:
-      '@acme/eslint-config':
+      '@recaply/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@acme/tailwind-config':
+      '@recaply/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/node':
@@ -133,19 +133,19 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
     devDependencies:
-      '@acme/api':
+      '@recaply/api':
         specifier: workspace:*
         version: link:../../packages/api
-      '@acme/eslint-config':
+      '@recaply/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@acme/tailwind-config':
+      '@recaply/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@babel/core':
@@ -178,19 +178,19 @@ importers:
 
   apps/nextjs:
     dependencies:
-      '@acme/api':
+      '@recaply/api':
         specifier: workspace:*
         version: link:../../packages/api
-      '@acme/auth':
+      '@recaply/auth':
         specifier: workspace:*
         version: link:../../packages/auth
-      '@acme/db':
+      '@recaply/db':
         specifier: workspace:*
         version: link:../../packages/db
-      '@acme/ui':
+      '@recaply/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@acme/validators':
+      '@recaply/validators':
         specifier: workspace:*
         version: link:../../packages/validators
       '@t3-oss/env-nextjs':
@@ -227,16 +227,16 @@ importers:
         specifier: ^3.23.6
         version: 3.23.6
     devDependencies:
-      '@acme/eslint-config':
+      '@recaply/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@acme/tailwind-config':
+      '@recaply/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/node':
@@ -269,13 +269,13 @@ importers:
 
   packages/api:
     dependencies:
-      '@acme/auth':
+      '@recaply/auth':
         specifier: workspace:*
         version: link:../auth
-      '@acme/db':
+      '@recaply/db':
         specifier: workspace:*
         version: link:../db
-      '@acme/validators':
+      '@recaply/validators':
         specifier: workspace:*
         version: link:../validators
       '@trpc/server':
@@ -288,13 +288,13 @@ importers:
         specifier: ^3.23.6
         version: 3.23.6
     devDependencies:
-      '@acme/eslint-config':
+      '@recaply/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       eslint:
@@ -309,7 +309,7 @@ importers:
 
   packages/auth:
     dependencies:
-      '@acme/db':
+      '@recaply/db':
         specifier: workspace:*
         version: link:../db
       '@auth/drizzle-adapter':
@@ -334,13 +334,13 @@ importers:
         specifier: ^3.23.6
         version: 3.23.6
     devDependencies:
-      '@acme/eslint-config':
+      '@recaply/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       eslint:
@@ -368,13 +368,13 @@ importers:
         specifier: ^3.23.6
         version: 3.23.6
     devDependencies:
-      '@acme/eslint-config':
+      '@recaply/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       dotenv-cli:
@@ -432,16 +432,16 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.9)(typescript@5.4.5)))
     devDependencies:
-      '@acme/eslint-config':
+      '@recaply/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@acme/tailwind-config':
+      '@recaply/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/react':
@@ -472,13 +472,13 @@ importers:
         specifier: ^3.23.6
         version: 3.23.6
     devDependencies:
-      '@acme/eslint-config':
+      '@recaply/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       eslint:
@@ -515,10 +515,10 @@ importers:
         specifier: ^7.8.0
         version: 7.8.0(eslint@9.2.0)(typescript@5.4.5)
     devDependencies:
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../prettier
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../typescript
       eslint:
@@ -545,7 +545,7 @@ importers:
         specifier: ^0.5.14
         version: 0.5.14(@ianvs/prettier-plugin-sort-imports@4.2.1(prettier@3.2.5))(prettier@3.2.5)
     devDependencies:
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../typescript
       typescript:
@@ -564,13 +564,13 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.9)(typescript@5.4.5)))
     devDependencies:
-      '@acme/eslint-config':
+      '@recaply/eslint-config':
         specifier: workspace:*
         version: link:../eslint
-      '@acme/prettier-config':
+      '@recaply/prettier-config':
         specifier: workspace:*
         version: link:../prettier
-      '@acme/tsconfig':
+      '@recaply/tsconfig':
         specifier: workspace:*
         version: link:../typescript
       eslint:
