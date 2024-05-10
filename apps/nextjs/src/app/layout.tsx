@@ -3,7 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
 
 import { cn } from "@recaply/ui";
-import { ThemeProvider, ThemeToggle } from "@recaply/ui/theme";
+import { ThemeProvider } from "@recaply/ui/theme";
 import { Toaster } from "@recaply/ui/toast";
 
 import { TRPCReactProvider } from "~/trpc/react";
@@ -52,9 +52,6 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 			>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					<TRPCReactProvider>{props.children}</TRPCReactProvider>
-					<div className="absolute bottom-4 right-4">
-						<ThemeToggle />
-					</div>
 					<Toaster />
 				</ThemeProvider>
 			</body>
