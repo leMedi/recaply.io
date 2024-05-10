@@ -4,24 +4,24 @@ import * as z from "zod";
 
 const env = createEnv({
 	server: {
-		DB_HOST: z.string(),
-		DB_NAME: z.string(),
-		DB_USERNAME: z.string(),
-		DB_PASSWORD: z.string(),
+		DATABASE_URL: z.string(),
+		DATABASE_AUTH_TOKEN: z.string().optional(),
 	},
 	runtimeEnv: process.env,
 	emptyStringAsUndefined: true,
 });
 
-// Push requires SSL so use URL instead of username/password
-export const connectionStr = new URL(`mysql://${env.DB_HOST}/${env.DB_NAME}`);
-connectionStr.username = env.DB_USERNAME;
-connectionStr.password = env.DB_PASSWORD;
-connectionStr.searchParams.set("ssl", '{"rejectUnauthorized":true}');
+export const dbCreds = {
+	url: env.DATABASE_URL,
+	authToken: env.DATABASE_AUTH_TOKEN,
+};
 
 export default {
 	schema: "./src/schema",
-	driver: "mysql2",
-	dbCredentials: { uri: connectionStr.href },
-	tablesFilter: ["t3turbo_*"],
+	out: "./migrations",
+	driver: "turso",
+	dbCredentials: {
+		...dbCreds,
+	},
+	tablesFilter: ["recaply_*"],
 } satisfies Config;
