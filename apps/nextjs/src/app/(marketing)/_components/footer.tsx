@@ -20,7 +20,7 @@ export const Footer = () => {
 					<div>
 						<a
 							rel="noreferrer noopener"
-							href="#"
+							href="#dd"
 							className="opacity-60 hover:opacity-100"
 						>
 							Github
@@ -30,7 +30,7 @@ export const Footer = () => {
 					<div>
 						<a
 							rel="noreferrer noopener"
-							href="#"
+							href="#dd"
 							className="opacity-60 hover:opacity-100"
 						>
 							Twitter
@@ -40,7 +40,7 @@ export const Footer = () => {
 					<div>
 						<a
 							rel="noreferrer noopener"
-							href="#"
+							href="#dd"
 							className="opacity-60 hover:opacity-100"
 						>
 							Dribbble
@@ -53,7 +53,7 @@ export const Footer = () => {
 					<div>
 						<a
 							rel="noreferrer noopener"
-							href="#"
+							href="#features"
 							className="opacity-60 hover:opacity-100"
 						>
 							Features
@@ -63,7 +63,7 @@ export const Footer = () => {
 					<div>
 						<a
 							rel="noreferrer noopener"
-							href="#"
+							href="#pricing"
 							className="opacity-60 hover:opacity-100"
 						>
 							Pricing
@@ -73,7 +73,7 @@ export const Footer = () => {
 					<div>
 						<a
 							rel="noreferrer noopener"
-							href="#"
+							href="#faq"
 							className="opacity-60 hover:opacity-100"
 						>
 							FAQ

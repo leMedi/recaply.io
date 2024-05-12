@@ -2,6 +2,7 @@ import { relations, sql } from "drizzle-orm";
 import { index, integer, primaryKey, text } from "drizzle-orm/sqlite-core";
 
 import { idStr, idStrPrimaryKey, mySqlLiteTable, sqlDateCol } from "./_table";
+import { providers } from "./providers";
 
 export const users = mySqlLiteTable("user", {
 	id: idStrPrimaryKey("id"),
@@ -13,6 +14,7 @@ export const users = mySqlLiteTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
 	accounts: many(accounts),
+	providers: many(providers),
 }));
 
 export const accounts = mySqlLiteTable(

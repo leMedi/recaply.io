@@ -20,6 +20,7 @@ export default {
 	schema: "./src/schema",
 	out: "./migrations",
 	driver: "turso",
+	dialect: "sqlite",
 	dbCredentials: {
 		...dbCreds,
 	},

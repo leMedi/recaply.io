@@ -23,6 +23,7 @@
 	"dependencies": {
 		"@recaply/auth": "workspace:*",
 		"@recaply/db": "workspace:*",
+		"@recaply/providers": "workspace:*",
 		"@trpc/server": "11.0.0-rc.364",
 		"superjson": "2.2.1",
 		"zod": "^3.23.6"

@@ -1,9 +1,9 @@
 "use client";
 
 import { cn } from "@recaply/ui";
-import React, { forwardRef, useRef } from "react";
 import { AnimatedBeam } from "@recaply/ui/magicui/animated-beam";
 import { Slack } from "lucide-react";
+import React, { forwardRef, useRef } from "react";
 
 const Circle = forwardRef<
 	HTMLDivElement,
