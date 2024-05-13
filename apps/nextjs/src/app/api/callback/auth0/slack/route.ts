@@ -1,6 +1,8 @@
 import { db, eq, schema } from "@recaply/db";
 import { slack } from "@recaply/providers";
-import { api } from "~/trpc/server";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
 	try {

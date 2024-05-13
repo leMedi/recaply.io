@@ -1,0 +1,35 @@
+name: Vercel Prod Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_PROD_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROD_PROJECT_ID }}
+  NODE_ENV: production
+  DATABASE_URL: "libsql://for-build.db"
+  AUTH_SECRET: "for-build"
+  SLACK_CLIENT_ID: "for-build"
+  SLACK_CLIENT_SECRET: "for-build"
+  AUTH_GOOGLE_SECRET: "for-build"
+  PUBLIC_URI: "https://for-build.app"
+  OPENAI_API_KEY: "for-build"
+  RESEND_API_KEY: "for-build"
+  TRIGGER_API_APP_ID: "for-build"
+  TRIGGER_API_KEY: "for-build"
+  TRIGGER_API_URL: https://api.trigger.dev
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Deploy-Prod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Tools
+        run: npm install --global vercel@latest pnpm@9.0.6
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_PROD_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_PROD_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_PROD_TOKEN }}
