@@ -1,9 +1,11 @@
 import type { TRPCRouterRecord } from "@trpc/server";
+import { revalidatePath } from "next/cache";
 
 import { and, desc, eq, inArray, isNull, schema } from "@recaply/db";
 
 import { zNewContext } from "@recaply/db/schema/contexts";
 import { protectedProcedure } from "../trpc";
+import { Events, triggerDev } from "@recaply/jobs";
 
 export const contextsRouter = {
 	all: protectedProcedure.query(({ ctx }) => {
@@ -44,13 +46,23 @@ export const contextsRouter = {
 				throw new Error("Invalid provider");
 			}
 
-			const context = await ctx.db
+			const [context] = await ctx.db
 				.insert(schema.contexts)
 				.values({
 					...input,
 					userId: ctx.session.user.id,
 				})
 				.returning();
+
+			void triggerDev.sendEvent({
+				id: `context-id-${context!.id}`,
+				name: Events.SCHEDULE_RECAPE,
+				payload: {
+					contextId: context!.id,
+				},
+			});
+
+			revalidatePath("/dashboard");
 
 			return context;
 		}),

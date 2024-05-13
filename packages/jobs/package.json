@@ -1,9 +1,11 @@
 {
-	"name": "@recaply/{{name}}",
+	"name": "@recaply/jobs",
 	"private": true,
 	"version": "0.1.0",
 	"type": "module",
-	"exports": { ".": "./src/index.ts" },
+	"exports": {
+		".": "./src/index.ts"
+	},
 	"license": "MIT",
 	"scripts": {
 		"clean": "rm -rf .turbo node_modules",
@@ -14,7 +16,16 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
+		"@recaply/db": "workspace:*",
+		"@recaply/providers": "workspace:*",
 		"@recaply/tsconfig": "workspace:*",
 		"typescript": "^5.4.5"
+	},
+	"dependencies": {
+		"@trigger.dev/openai": "^2.3.18",
+		"@trigger.dev/react": "^2.3.18",
+		"@trigger.dev/resend": "^2.3.18",
+		"@trigger.dev/sdk": "^2.3.18",
+		"nanoid": "^5.0.7"
 	}
 }

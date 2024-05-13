@@ -3,7 +3,6 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 import { text } from "drizzle-orm/sqlite-core";
 import { z } from "zod";
-import { providers } from "..";
 import {
 	idAutoIncrementPrimaryKey,
 	idStr,
@@ -32,18 +31,30 @@ export const contextsRelations = relations(contexts, ({ one }) => ({
 	user: one(users, { fields: [contexts.userId], references: [users.id] }),
 }));
 
-export const zContext = createSelectSchema(contexts, {});
-
 const zSlackConfig = z.object({
 	providerId: zProvider.shape.id,
 	type: z.literal("slack"),
 	channels: z.array(z.string()),
 });
 
-// const zProviderConfig = z.object({
-// 	providerId: z.number(),
-// 	config: z.record(z.string(), z.discriminatedUnion("type", [zSlackConfig])),
-// });
+export const zProviderConfig = z
+	.record(z.string(), z.discriminatedUnion("type", [zSlackConfig]))
+	.refine(
+		(v) =>
+			Object.values(v).some((p) => {
+				if (p.type === "slack") {
+					return p.channels.length > 0;
+				}
+				return false;
+			}),
+		"At least one slack provider must have at least one channel",
+	);
+
+export const zContext = createSelectSchema(contexts, {
+	providersConfig: zProviderConfig,
+});
+export type Context = z.infer<typeof zContext>;
+
 export const zNewContext = createInsertSchema(contexts, {
 	providersConfig: z
 		.record(z.string(), z.discriminatedUnion("type", [zSlackConfig]))

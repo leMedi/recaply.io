@@ -1,9 +1,11 @@
 {
-	"name": "@recaply/{{name}}",
+	"name": "@recaply/ai",
 	"private": true,
 	"version": "0.1.0",
 	"type": "module",
-	"exports": { ".": "./src/index.ts" },
+	"exports": {
+		".": "./src/index.ts"
+	},
 	"license": "MIT",
 	"scripts": {
 		"clean": "rm -rf .turbo node_modules",
@@ -16,5 +18,8 @@
 	"devDependencies": {
 		"@recaply/tsconfig": "workspace:*",
 		"typescript": "^5.4.5"
+	},
+	"dependencies": {
+		"openai": "^4.45.0"
 	}
 }
