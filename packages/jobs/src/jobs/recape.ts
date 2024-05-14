@@ -54,6 +54,24 @@ triggerDev.defineJob({
 	},
 });
 
+triggerDev.defineJob({
+	id: "UNSCHEDULE_RECAP",
+	name: "Unschedule Recape",
+	version: "1.0.0",
+	trigger: eventTrigger({
+		name: Events.UNSCHEDULE_RECAP,
+		schema: z.object({
+			contextId: z.number(),
+		}),
+	}),
+	integrations: {},
+	run: async (payload, io) => {
+		const { contextId } = payload;
+
+		await recepeSchedule.unregister(contextId.toString());
+	},
+});
+
 const recepeSchedule = triggerDev.defineDynamicSchedule({
 	id: "recepeSchedule",
 });

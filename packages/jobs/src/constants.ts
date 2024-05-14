@@ -4,4 +4,5 @@ export const Jobs = {
 
 export const Events = {
 	SCHEDULE_RECAPE: "SCHEDULE_RECAPE",
+	UNSCHEDULE_RECAP: "UNSCHEDULE_RECAP",
 };

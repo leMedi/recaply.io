@@ -1,11 +1,12 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { revalidatePath } from "next/cache";
 
-import { and, desc, eq, inArray, isNull, schema } from "@recaply/db";
+import { and, desc, eq, inArray, isNotNull, isNull, schema } from "@recaply/db";
 
 import { zNewContext } from "@recaply/db/schema/contexts";
 import { protectedProcedure } from "../trpc";
 import { Events, triggerDev } from "@recaply/jobs";
+import { z } from "zod";
 
 export const contextsRouter = {
 	all: protectedProcedure.query(({ ctx }) => {
@@ -15,6 +16,7 @@ export const contextsRouter = {
 				name: true,
 				recapeTime: true,
 				recapeTimeSpan: true,
+				disabledAt: true,
 				createdAt: true,
 				updatedAt: true,
 			},
@@ -65,6 +67,73 @@ export const contextsRouter = {
 			revalidatePath("/dashboard");
 
 			return context;
+		}),
+
+	enable: protectedProcedure
+		.input(z.number())
+		.mutation(async ({ ctx, input }) => {
+			const [context] = await ctx.db
+				.update(schema.contexts)
+				.set({
+					disabledAt: null,
+				})
+				.where(
+					and(
+						eq(schema.contexts.id, input),
+						isNotNull(schema.contexts.disabledAt),
+						isNull(schema.contexts.deletedAt),
+					),
+				)
+				.returning();
+
+			if (!context) {
+				throw new Error("Context not found");
+			}
+
+			await triggerDev.sendEvent({
+				id: `context-id-${context.id}`,
+				name: Events.SCHEDULE_RECAPE,
+				payload: {
+					contextId: context.id,
+				},
+			});
+
+			revalidatePath("/dashboard");
+
+			return true;
+		}),
+
+	disable: protectedProcedure
+		.input(z.number())
+		.mutation(async ({ ctx, input }) => {
+			const [context] = await ctx.db
+				.update(schema.contexts)
+				.set({
+					disabledAt: new Date(),
+				})
+				.where(
+					and(eq(schema.contexts.id, input), isNull(schema.contexts.deletedAt)),
+				)
+				.returning();
+
+			if (!context) {
+				throw new Error("Context not found");
+			}
+
+			console.log("disable sending event");
+			const res = await triggerDev.sendEvent({
+				id: `context-id-${context.id}`,
+				name: Events.UNSCHEDULE_RECAP,
+				payload: {
+					contextId: 4,
+					// contextId: context.id,
+				},
+			});
+			console.log("disable sent event", res);
+
+			revalidatePath("/dashboard");
+
+			return true;
 		}),
 
 	// delete: protectedProcedure.input(z.number()).mutation(({ ctx, input }) => {

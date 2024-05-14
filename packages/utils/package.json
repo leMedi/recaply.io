@@ -1,0 +1,25 @@
+{
+  "name": "@recaply/utils",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "biome format ./src",
+    "format:fix": "biome format --write ./src",
+    "lint": "biome check ./src",
+    "lint:fix": "biome check --apply ./src",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@recaply/tsconfig": "workspace:*",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "date-fns": "^3.6.0"
+  }
+}

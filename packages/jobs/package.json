@@ -15,18 +15,19 @@
 		"lint:fix": "biome check --apply ./src",
 		"typecheck": "tsc --noEmit"
 	},
-	"devDependencies": {
-		"@recaply/db": "workspace:*",
-		"@recaply/providers": "workspace:*",
-		"@recaply/tsconfig": "workspace:*",
-		"typescript": "^5.4.5"
-	},
 	"dependencies": {
+		"@recaply/db": "workspace:*",
+		"@recaply/utils": "workspace:*",
 		"@trigger.dev/openai": "^2.3.18",
 		"@trigger.dev/react": "^2.3.18",
 		"@trigger.dev/resend": "^2.3.18",
 		"@trigger.dev/sdk": "^2.3.18",
 		"date-fns": "^3.6.0",
 		"nanoid": "^5.0.7"
+	},
+	"devDependencies": {
+		"@recaply/providers": "workspace:*",
+		"@recaply/tsconfig": "workspace:*",
+		"typescript": "^5.4.5"
 	}
 }

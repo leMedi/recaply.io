@@ -19,6 +19,8 @@ import {
 import Link from "next/link";
 import { Suspense } from "react";
 import { api } from "~/trpc/server";
+import { NextRecapDate } from "./recape-next-date";
+import { EnableContextBtn } from "./enable-context-btn";
 
 export async function ContextsCard() {
 	const providers = await api.providers.all();
@@ -57,7 +59,8 @@ export async function ContextsCard() {
 						<TableRow>
 							<TableHead className="pl-8">Name</TableHead>
 							<TableHead className="">last Recap</TableHead>
-							<TableHead className="">Status</TableHead>
+							<TableHead className="">Next Recap at</TableHead>
+							<TableHead className="" />
 						</TableRow>
 					</TableHeader>
 					<Suspense fallback={<p>loading...</p>}>
@@ -83,11 +86,15 @@ async function TableContent() {
 							hours
 						</div>
 					</TableCell>
-					<TableCell className="hidden md:table-cell">2023-06-23</TableCell>
-					<TableCell className="hidden sm:table-cell">
-						<Badge className="text-xs" variant="outline">
-							Active
-						</Badge>
+					<TableCell className="hidden md:table-cell">--</TableCell>
+					<TableCell className="hidden md:table-cell">
+						<NextRecapDate recapeTime={context.recapeTime} />
+					</TableCell>
+					<TableCell className="flex justify-end pr-4">
+						<EnableContextBtn
+							contextId={context.id}
+							isDisabled={!!context.disabledAt}
+						/>
 					</TableCell>
 				</TableRow>
 			))}

@@ -41,6 +41,9 @@ importers:
       '@recaply/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@recaply/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@t3-oss/env-nextjs':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.6)
@@ -235,6 +238,12 @@ importers:
 
   packages/jobs:
     dependencies:
+      '@recaply/db':
+        specifier: workspace:*
+        version: link:../db
+      '@recaply/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@trigger.dev/openai':
         specifier: ^2.3.18
         version: 2.3.18(encoding@0.1.13)
@@ -254,9 +263,6 @@ importers:
         specifier: ^5.0.7
         version: 5.0.7
     devDependencies:
-      '@recaply/db':
-        specifier: workspace:*
-        version: link:../db
       '@recaply/providers':
         specifier: workspace:*
         version: link:../providers
@@ -269,6 +275,9 @@ importers:
 
   packages/providers:
     dependencies:
+      '@recaply/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@slack/web-api':
         specifier: ^7.0.4
         version: 7.0.4
@@ -373,6 +382,19 @@ importers:
       zod:
         specifier: ^3.23.6
         version: 3.23.6
+
+  packages/utils:
+    dependencies:
+      date-fns:
+        specifier: ^3.6.0
+        version: 3.6.0
+    devDependencies:
+      '@recaply/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
 
   tooling/github: {}
 

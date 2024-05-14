@@ -7,6 +7,7 @@ import {
 	idAutoIncrementPrimaryKey,
 	idStr,
 	mySqlLiteTable,
+	sqlDateCol,
 	timestampColumns,
 } from "./_table";
 import { users } from "./auth";
@@ -26,6 +27,7 @@ export const contexts = mySqlLiteTable("contexts", {
 
 	providersConfig: text("providers", { mode: "json" }).notNull(),
 
+	disabledAt: sqlDateCol("disabled_at"),
 	...timestampColumns,
 });
 
