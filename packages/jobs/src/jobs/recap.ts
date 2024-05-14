@@ -101,8 +101,8 @@ triggerDev.defineJob({
 		console.log("MAKE_RECAPE payload", payload);
 		console.log("MAKE_RECAPE ctx", ctx);
 
-		// const contextId = Number(ctx.source!.id);
-		const contextId = 5;
+		const contextId = Number(ctx.source!.id);
+		// const contextId = 5;
 
 		const context = await db.query.contexts.findFirst({
 			where: and(
