@@ -80,7 +80,7 @@ export function MultiSelect({
 				<span>Selected Channels:</span>
 				{selectedValues.map((c) => (
 					<Badge key={c} variant={"outline"}>
-						#{c}
+						# {c}
 					</Badge>
 				))}
 			</div>

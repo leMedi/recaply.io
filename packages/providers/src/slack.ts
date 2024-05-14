@@ -1,5 +1,10 @@
-import { WebClient } from "@slack/web-api";
+import { ConversationsListResponse, WebClient } from "@slack/web-api";
 import { env } from "./env";
+
+type Channel = Exclude<
+	ConversationsListResponse["channels"],
+	undefined
+>[number];
 
 export async function exchangeAuthOCodeForAccessToken(code: string) {
 	const web = new WebClient();
@@ -39,25 +44,52 @@ export function generateSlackAuth0Url(userId: string) {
 	return url.toString();
 }
 
+function getChannelType(channel: Channel): "public" | "private" | "im" {
+	// if(channel.) {
+	// 	return "im";
+	// }
+	if (channel.is_private) {
+		return "private";
+	}
+	return "public";
+}
+
 export async function listChannels(accessToken: string) {
 	const web = new WebClient(accessToken);
 
-	const result = await web.conversations.list({
-		exclude_archived: true,
-		limit: 9999999,
-	});
+	const channels: Channel[] = [];
 
-	if (!result.ok) {
-		throw new Error(result.error);
-	}
+	let cusor: string | undefined;
+	let reqCount = 0;
+	do {
+		const result = await web.conversations.list({
+			exclude_archived: true,
+			types: "public_channel,private_channel,im",
+			limit: 9999999,
+			cursor: cusor,
+		});
 
-	if (result.channels === undefined) {
-		return [];
-	}
+		if (!result.ok) {
+			throw new Error(result.error);
+		}
 
-	return result.channels.map((channel) => ({
+		if (result.channels === undefined) {
+			break;
+		}
+
+		channels.push(...result.channels);
+		cusor = result.response_metadata?.next_cursor;
+
+		reqCount++;
+		if (reqCount > 20) break;
+	} while (cusor);
+
+	console.log(`Found ${channels.length} channels after ${reqCount} requests.`);
+
+	return channels.map((channel) => ({
 		id: channel.id!,
 		name: channel.name!,
+		type: getChannelType(channel),
 	}));
 }
 

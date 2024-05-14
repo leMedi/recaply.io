@@ -8,6 +8,7 @@ import {
 	AccordionTrigger,
 } from "@recaply/ui/accordion";
 import { Input } from "@recaply/ui/input";
+import { Skeleton } from "@recaply/ui/skeleton";
 import { Label } from "@recaply/ui/label";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { z } from "zod";
@@ -174,34 +175,45 @@ function ConfigProvider({ providers }: { providers: Providers }) {
 function ConfigSlack({ providerId }: { providerId: number }) {
 	const { control } = useFormContext<formValues>();
 
-	const { data } = api.providers.getSlackOptions.useQuery({
-		providerId,
-	});
+	const { data, isLoading } = api.providers.getSlackOptions.useQuery(
+		{
+			providerId,
+		},
+		{
+			refetchOnWindowFocus: false,
+			staleTime: Number.MAX_SAFE_INTEGER,
+			// cacheTime: Number.MAX_SAFE_INTEGER,
+		},
+	);
 
 	return (
 		<div>
 			<Label htmlFor={`slack.${providerId}.channels`} className="block mb-2">
 				Slack Channels
 			</Label>
-			<Controller
-				control={control}
-				defaultValue={[]}
-				name={`providersConfig.${providerId}.channels`}
-				render={({ field }) => (
-					<MultiSelect
-						options={
-							data?.channels.map((channel) => ({
-								label: `#${channel.name}`,
-								value: channel.id,
-							})) || []
-						}
-						selectedValues={field.value}
-						onSelectedValuesChange={(selectedValues) => {
-							field.onChange(selectedValues);
-						}}
-					/>
-				)}
-			/>
+			{isLoading ? (
+				<Skeleton className="h-8 full-w mt-8" />
+			) : (
+				<Controller
+					control={control}
+					defaultValue={[]}
+					name={`providersConfig.${providerId}.channels`}
+					render={({ field }) => (
+						<MultiSelect
+							options={
+								data?.channels.map((channel) => ({
+									label: `# ${channel.name}`,
+									value: channel.id,
+								})) || []
+							}
+							selectedValues={field.value}
+							onSelectedValuesChange={(selectedValues) => {
+								field.onChange(selectedValues);
+							}}
+						/>
+					)}
+				/>
+			)}
 		</div>
 	);
 }
