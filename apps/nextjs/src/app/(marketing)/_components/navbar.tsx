@@ -1,6 +1,7 @@
 "use client";
 
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { cn } from "@recaply/ui";
+// import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { buttonVariants } from "@recaply/ui/button";
 // import { ModeToggle } from "./mode-toggle";
 import {
@@ -90,7 +91,7 @@ export const Navbar = () => {
 											{label}
 										</a>
 									))}
-									<a
+									{/* <a
 										rel="noreferrer noopener"
 										href="https://github.com/leoMirandaa/shadcn-landing-page.git"
 										target="_blank"
@@ -100,7 +101,13 @@ export const Navbar = () => {
 									>
 										<GitHubLogoIcon className="mr-2 w-5 h-5" />
 										Github
-									</a>
+									</a> */}
+									<Link
+										href="/signin"
+										className={cn(buttonVariants({ variant: "primary" }))}
+									>
+										Sign In
+									</Link>
 								</nav>
 							</SheetContent>
 						</Sheet>
@@ -123,7 +130,7 @@ export const Navbar = () => {
 					</nav>
 
 					<div className="hidden md:flex gap-2">
-						<a
+						{/* <a
 							rel="noreferrer noopener"
 							href="https://github.com/leoMirandaa/shadcn-landing-page.git"
 							target="_blank"
@@ -131,7 +138,13 @@ export const Navbar = () => {
 						>
 							<GitHubLogoIcon className="mr-2 w-5 h-5" />
 							Github
-						</a>
+						</a> */}
+						<Link
+							href="/signin"
+							className={cn(buttonVariants({ variant: "primary" }))}
+						>
+							Sign In
+						</Link>
 
 						<ThemeToggle />
 					</div>
