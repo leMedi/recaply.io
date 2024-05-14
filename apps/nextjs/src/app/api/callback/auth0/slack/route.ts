@@ -16,8 +16,6 @@ export async function GET(request: Request) {
 
 		const creds = await slack.exchangeAuthOCodeForAccessToken(code);
 
-		console.log(creds);
-
 		if (!creds || !creds.authed_user?.access_token) {
 			return Response.json({ error: "Invalid code" }, { status: 400 });
 		}

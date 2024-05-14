@@ -30,7 +30,7 @@ export function generateSlackAuth0Url(userId: string) {
 	url.searchParams.append("user_scope", scopes.join(","));
 	url.searchParams.append(
 		"redirect_uri",
-		`${env.PUBLIC_URI}/api/callback/auth0/slack`,
+		`${env.NEXT_PUBLIC_URL}/api/callback/auth0/slack`,
 	);
 	url.searchParams.append("state", userId);
 

@@ -8,7 +8,7 @@ env:
   SLACK_CLIENT_ID: "for-build"
   SLACK_CLIENT_SECRET: "for-build"
   AUTH_GOOGLE_SECRET: "for-build"
-  PUBLIC_URI: "https://for-build.app"
+  NEXT_PUBLIC_URL: "https://recaply.io"
   OPENAI_API_KEY: "for-build"
   RESEND_API_KEY: "for-build"
   TRIGGER_API_APP_ID: "for-build"

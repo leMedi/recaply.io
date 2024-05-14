@@ -15,21 +15,21 @@ import { env } from "~/env";
 export const metadata: Metadata = {
 	metadataBase: new URL(
 		env.VERCEL_ENV === "production"
-			? "https://turbo.t3.gg"
+			? env.NEXT_PUBLIC_URL
 			: "http://localhost:3000",
 	),
-	title: "Create T3 Turbo",
-	description: "Simple monorepo with shared backend for web & mobile apps",
+	title: "Recaply",
+	description: "Daily audio recaps of your Slack messages",
 	openGraph: {
-		title: "Create T3 Turbo",
-		description: "Simple monorepo with shared backend for web & mobile apps",
-		url: "https://create-t3-turbo.vercel.app",
-		siteName: "Create T3 Turbo",
+		title: "Recaply",
+		description: "Daily audio recaps of your Slack messages",
+		url: env.NEXT_PUBLIC_URL,
+		siteName: "Recaply",
 	},
 	twitter: {
 		card: "summary_large_image",
-		site: "@jullerino",
-		creator: "@jullerino",
+		site: "@Mehdi_ElHAIJ",
+		creator: "@Mehdi_ElHAIJ",
 	},
 };
 

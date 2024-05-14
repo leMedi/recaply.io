@@ -19,7 +19,7 @@ export default function AuthenticationPage() {
 					"absolute left-4 top-4 md:left-8 md:top-8",
 				)}
 			>
-				Recapify
+				Recaply
 			</Link>
 			<div className="p-4 lg:p-8 h-full flex items-center">
 				<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
