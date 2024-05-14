@@ -12,7 +12,7 @@ import { subMinutes } from "date-fns";
 
 triggerDev.defineJob({
 	id: "SCHEDULE_RECAPE",
-	name: "Schedule Recape",
+	name: "Schedule Recap",
 	version: "1.0.0",
 	trigger: eventTrigger({
 		name: Events.SCHEDULE_RECAPE,
@@ -36,13 +36,13 @@ triggerDev.defineJob({
 		}
 
 		const nowUTC = getUTCDate();
-		nowUTC.setHours(Number(context.recapeTime));
+		nowUTC.setHours(Number(context.recapTime));
 		const backToUTC = subMinutes(nowUTC, context.timeZoneOffset);
 
-		console.log("recape_time", context.recapeTime, "UTC", backToUTC.getHours());
-		io.logger.info("recape_time", {
-			recapeTime: context.recapeTime,
-			recapeTimeUTC: backToUTC.getHours(),
+		console.log("recap_time", context.recapTime, "UTC", backToUTC.getHours());
+		io.logger.info("recap_time", {
+			recapTime: context.recapTime,
+			recapTimeUTC: backToUTC.getHours(),
 		});
 
 		await recepeSchedule.register(context.id.toString(), {
@@ -56,7 +56,7 @@ triggerDev.defineJob({
 
 triggerDev.defineJob({
 	id: "UNSCHEDULE_RECAP",
-	name: "Unschedule Recape",
+	name: "Unschedule Recap",
 	version: "1.0.0",
 	trigger: eventTrigger({
 		name: Events.UNSCHEDULE_RECAP,
@@ -90,7 +90,7 @@ const getUTCDate = () => {
 
 triggerDev.defineJob({
 	id: "MAKE_RECAPE",
-	name: "Make Recape",
+	name: "Make Recap",
 	version: "1.0.0",
 	trigger: recepeSchedule,
 	integrations: {
@@ -120,7 +120,7 @@ triggerDev.defineJob({
 
 		const cutoffDate = getUTCDate();
 		// cutoffDate.setDate(cutoffDate.getDate() - 5);
-		cutoffDate.setHours(cutoffDate.getHours() - Number(context.recapeTimeSpan));
+		cutoffDate.setHours(cutoffDate.getHours() - Number(context.recapTimeSpan));
 		const cuteOfTimestamp = cutoffDate.getTime() / 1000;
 
 		io.logger.debug("cuteOfTimestamp", {
@@ -202,7 +202,7 @@ triggerDev.defineJob({
 
 		// summarize messages
 		const _context = `${context.name} - ${context.description}`;
-		const completion = await io.openai.chat.completions.create("recape", {
+		const completion = await io.openai.chat.completions.create("recap", {
 			model: "gpt-3.5-turbo",
 			messages: [
 				{
@@ -216,23 +216,23 @@ triggerDev.defineJob({
 			throw new Error("Unexpected completion");
 		}
 
-		const recape = completion.choices[0]!.message.content;
+		const recap = completion.choices[0]!.message.content;
 
-		io.logger.info("recape done", {
-			recape,
+		io.logger.info("recap done", {
+			recap,
 		});
 
 		await io.wait("take a breath", 10);
 
 		// TODO: generate audio
 
-		// send email recape
-		await io.resend.emails.send("recape-ready", {
+		// send email recap
+		await io.resend.emails.send("recap-ready", {
 			to: context.user.email,
-			subject: `Your recape for ${context.name} is ready`,
+			subject: `Your recap for ${context.name} is ready`,
 			from: "Recaply <contact@notifications.recaply.io>",
-			text: `Hello, your recape for ${context.name} is ready, here is a summary of the important things discussed in the past ${context.recapeTimeSpan} hours of messages related to the context:
-${recape}
+			text: `Hello, your recap for ${context.name} is ready, here is a summary of the important things discussed in the past ${context.recapTimeSpan} hours of messages related to the context:
+${recap}
 
 Regards,
 Recaply Team

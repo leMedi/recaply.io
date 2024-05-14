@@ -19,7 +19,7 @@ import {
 import Link from "next/link";
 import { Suspense } from "react";
 import { api } from "~/trpc/server";
-import { NextRecapDate } from "./recape-next-date";
+import { NextRecapDate } from "./recap-next-date";
 import { EnableContextBtn } from "./enable-context-btn";
 
 export async function ContextsCard() {
@@ -82,13 +82,12 @@ async function TableContent() {
 					<TableCell className="pl-8">
 						<div className="font-medium">{context.name}</div>
 						<div className="hidden text-sm text-muted-foreground md:inline">
-							at {context.recapeTime} for the past {context.recapeTimeSpan}{" "}
-							hours
+							at {context.recapTime} for the past {context.recapTimeSpan} hours
 						</div>
 					</TableCell>
 					<TableCell className="hidden md:table-cell">--</TableCell>
 					<TableCell className="hidden md:table-cell">
-						<NextRecapDate recapeTime={context.recapeTime} />
+						<NextRecapDate recapTime={context.recapTime} />
 					</TableCell>
 					<TableCell className="flex justify-end pr-4">
 						<EnableContextBtn

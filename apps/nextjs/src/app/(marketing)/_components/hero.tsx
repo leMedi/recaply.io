@@ -33,7 +33,7 @@ export function Hero() {
 								)}
 								href="/signup"
 							>
-								Get Your Recape
+								Get Your Recap
 							</Link>
 						</div>
 						<div className="mt-12 w-full overflow-hidden sm:mt-20 lg:-mt-8 lg:w-6/12">

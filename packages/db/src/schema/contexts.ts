@@ -22,8 +22,8 @@ export const contexts = mySqlLiteTable("contexts", {
 
 	timeZoneOffset: integer("time_zone_offset").default(0).notNull(),
 
-	recapeTime: text("recape_time", { length: 256 }).notNull(),
-	recapeTimeSpan: text("recape_time_span", { length: 256 }).notNull(),
+	recapTime: text("recap_time", { length: 256 }).notNull(),
+	recapTimeSpan: text("recap_time_span", { length: 256 }).notNull(),
 
 	providersConfig: text("providers", { mode: "json" }).notNull(),
 

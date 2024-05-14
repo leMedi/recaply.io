@@ -14,8 +14,8 @@ export const contextsRouter = {
 			columns: {
 				id: true,
 				name: true,
-				recapeTime: true,
-				recapeTimeSpan: true,
+				recapTime: true,
+				recapTimeSpan: true,
 				disabledAt: true,
 				createdAt: true,
 				updatedAt: true,
@@ -125,8 +125,7 @@ export const contextsRouter = {
 				id: `context-id-${context.id}`,
 				name: Events.UNSCHEDULE_RECAP,
 				payload: {
-					contextId: 4,
-					// contextId: context.id,
+					contextId: context.id,
 				},
 			});
 			console.log("disable sent event", res);

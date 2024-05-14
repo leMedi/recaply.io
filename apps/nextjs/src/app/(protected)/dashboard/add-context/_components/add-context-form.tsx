@@ -55,8 +55,8 @@ export default function AddContextForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			timeZoneOffset: new Date().getTimezoneOffset(),
-			recapeTime: "9",
-			recapeTimeSpan: "24",
+			recapTime: "9",
+			recapTimeSpan: "24",
 			providersConfig: providers.reduce(
 				(acc, p) => {
 					acc[p.id] = {
@@ -132,10 +132,10 @@ export default function AddContextForm({
 
 						<div className="md:grid grid-cols-2 md:gap-8">
 							<div className="w-full">
-								<RecapeTimeSelect />
+								<RecapTimeSelect />
 							</div>
 							<div className="w-full">
-								<RecapeSpan />
+								<RecapSpan />
 							</div>
 						</div>
 
@@ -219,20 +219,20 @@ function ConfigSlack({ providerId }: { providerId: number }) {
 	);
 }
 
-export function RecapeTimeSelect() {
+export function RecapTimeSelect() {
 	const form = useFormContext<formValues>();
 
 	return (
 		<FormField
 			control={form.control}
-			name="recapeTime"
+			name="recapTime"
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel>Recape Time</FormLabel>
+					<FormLabel>Recap Time</FormLabel>
 					<FormControl>
 						<Select>
 							<SelectTrigger>
-								<SelectValue placeholder="Select a recape time" />
+								<SelectValue placeholder="Select a recap time" />
 							</SelectTrigger>
 							<SelectContent>
 								<SelectGroup>
@@ -254,20 +254,20 @@ export function RecapeTimeSelect() {
 	);
 }
 
-export function RecapeSpan() {
+export function RecapSpan() {
 	const form = useFormContext<formValues>();
 
 	return (
 		<FormField
 			control={form.control}
-			name="recapeTimeSpan"
+			name="recapTimeSpan"
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel>Recape Time Span</FormLabel>
+					<FormLabel>Recap Time Span</FormLabel>
 					<FormControl>
 						<Select>
 							<SelectTrigger>
-								<SelectValue placeholder="Select recape time span" />
+								<SelectValue placeholder="Select recap time span" />
 							</SelectTrigger>
 							<SelectContent>
 								<SelectGroup>

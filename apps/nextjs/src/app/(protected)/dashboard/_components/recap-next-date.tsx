@@ -3,16 +3,16 @@
 import { calcNextRecapDate } from "@recaply/utils";
 
 export function NextRecapDate({
-	recapeTime,
+	recapTime,
 }: {
-	recapeTime: string;
+	recapTime: string;
 }) {
-	const nextRecapeDate = calcNextRecapDate(recapeTime);
+	const nextRecapDate = calcNextRecapDate(recapTime);
 
 	return (
 		<>
-			{nextRecapeDate.toLocaleDateString()} at{" "}
-			{nextRecapeDate.toLocaleTimeString(navigator.language, {
+			{nextRecapDate.toLocaleDateString()} at{" "}
+			{nextRecapDate.toLocaleTimeString(navigator.language, {
 				hour: "numeric",
 				// timeStyle: "full",
 				// minute: null,
