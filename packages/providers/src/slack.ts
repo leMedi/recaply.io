@@ -18,11 +18,13 @@ export async function exchangeAuthOCodeForAccessToken(code: string) {
 }
 
 const scopes = [
-	"channels:history",
-	"im:history",
-	"channels:read",
-	"im:read",
 	"users:read",
+	"channels:read",
+	"groups:read",
+	"im:read",
+	"channels:history",
+	"groups:history",
+	"im:history",
 ];
 export function generateSlackAuth0Url(userId: string) {
 	const url = new URL("https://slack.com/oauth/v2/authorize");
@@ -42,6 +44,7 @@ export async function listChannels(accessToken: string) {
 
 	const result = await web.conversations.list({
 		exclude_archived: true,
+		limit: 9999999,
 	});
 
 	if (!result.ok) {

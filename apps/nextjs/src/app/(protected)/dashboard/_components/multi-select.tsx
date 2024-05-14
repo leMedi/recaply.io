@@ -54,10 +54,10 @@ export function MultiSelect({
 								{options.map((option) => (
 									<CommandItem
 										key={option.value}
-										value={option.value}
+										value={option.label}
 										onSelect={(currentValue) => {
 											onSelectedValuesChange(
-												toggleElementFromArray(selectedValues, currentValue),
+												toggleElementFromArray(selectedValues, option.value),
 											);
 											// setOpen(false);
 										}}
