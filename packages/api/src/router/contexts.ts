@@ -54,7 +54,7 @@ export const contextsRouter = {
 				})
 				.returning();
 
-			void triggerDev.sendEvent({
+			await triggerDev.sendEvent({
 				id: `context-id-${context!.id}`,
 				name: Events.SCHEDULE_RECAPE,
 				payload: {
