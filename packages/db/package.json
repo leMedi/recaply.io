@@ -22,6 +22,7 @@
 		"lint:fix": "biome check --apply .",
 		"push": "pnpm with-env drizzle-kit push --config src/config.ts",
 		"studio": "pnpm with-env drizzle-kit studio --config src/config.ts",
+		"generate": "pnpm with-env drizzle-kit generate --config src/config.ts",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false",
 		"with-env": "dotenv -e ../../.env --"
 	},

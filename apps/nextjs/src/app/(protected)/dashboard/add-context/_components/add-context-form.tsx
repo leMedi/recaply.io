@@ -54,6 +54,7 @@ export default function AddContextForm({
 	const form = useForm<formValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
+			timeZoneOffset: new Date().getTimezoneOffset(),
 			recapeTime: "9",
 			recapeTimeSpan: "24",
 			providersConfig: providers.reduce(

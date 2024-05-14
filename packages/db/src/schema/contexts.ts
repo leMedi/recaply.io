@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
-import { text } from "drizzle-orm/sqlite-core";
+import { text, integer } from "drizzle-orm/sqlite-core";
 import { z } from "zod";
 import {
 	idAutoIncrementPrimaryKey,
@@ -18,6 +18,8 @@ export const contexts = mySqlLiteTable("contexts", {
 
 	name: text("type", { length: 256 }).notNull(),
 	description: text("description", { length: 256 }),
+
+	timeZoneOffset: integer("time_zone_offset").default(0).notNull(),
 
 	recapeTime: text("recape_time", { length: 256 }).notNull(),
 	recapeTimeSpan: text("recape_time_span", { length: 256 }).notNull(),

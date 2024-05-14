@@ -8,6 +8,7 @@ import { slack } from "@recaply/providers";
 import { Context } from "@recaply/db/schema/contexts";
 import { ProviderWithCreds } from "@recaply/db/schema/providers";
 import { nanoid } from "nanoid";
+import { subMinutes } from "date-fns";
 
 triggerDev.defineJob({
 	id: "SCHEDULE_RECAPE",
@@ -34,10 +35,20 @@ triggerDev.defineJob({
 			throw new Error("Context not found");
 		}
 
+		const nowUTC = getUTCDate();
+		nowUTC.setHours(Number(context.recapeTime));
+		const backToUTC = subMinutes(nowUTC, context.timeZoneOffset);
+
+		console.log("recape_time", context.recapeTime, "UTC", backToUTC.getHours());
+		io.logger.info("recape_time", {
+			recapeTime: context.recapeTime,
+			recapeTimeUTC: backToUTC.getHours(),
+		});
+
 		await recepeSchedule.register(context.id.toString(), {
 			type: "cron",
 			options: {
-				cron: `0 ${context.recapeTime} * * 1-5`,
+				cron: `0 ${backToUTC.getHours()} * * 1-5`,
 			},
 		});
 	},
@@ -52,6 +63,11 @@ type Message = {
 	content: string;
 	timestamp: string;
 	user: string;
+};
+
+const getUTCDate = () => {
+	const date = new Date();
+	return subMinutes(date, date.getTimezoneOffset());
 };
 
 triggerDev.defineJob({
@@ -84,9 +100,9 @@ triggerDev.defineJob({
 			throw new Error("Context not found");
 		}
 
-		const cutoffDate = new Date();
-		cutoffDate.setDate(cutoffDate.getDate() - 5);
-		// cutoffDate.setHours(cutoffDate.getHours() - Number(context.recapeTimeSpan));
+		const cutoffDate = getUTCDate();
+		// cutoffDate.setDate(cutoffDate.getDate() - 5);
+		cutoffDate.setHours(cutoffDate.getHours() - Number(context.recapeTimeSpan));
 		const cuteOfTimestamp = cutoffDate.getTime() / 1000;
 
 		io.logger.debug("cuteOfTimestamp", {
