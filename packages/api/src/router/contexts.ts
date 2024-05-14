@@ -1,6 +1,6 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { revalidatePath } from "next/cache";
-
+import { nanoid } from "nanoid";
 import { and, desc, eq, inArray, isNotNull, isNull, schema } from "@recaply/db";
 
 import { zNewContext } from "@recaply/db/schema/contexts";
@@ -91,7 +91,7 @@ export const contextsRouter = {
 			}
 
 			await triggerDev.sendEvent({
-				id: `context-id-${context.id}`,
+				id: `context-id-${context.id}-${nanoid()}`,
 				name: Events.SCHEDULE_RECAPE,
 				payload: {
 					contextId: context.id,
@@ -122,7 +122,7 @@ export const contextsRouter = {
 
 			console.log("disable sending event");
 			const res = await triggerDev.sendEvent({
-				id: `context-id-${context.id}`,
+				id: `context-id-${context.id}-${nanoid()}`,
 				name: Events.UNSCHEDULE_RECAP,
 				payload: {
 					contextId: context.id,
