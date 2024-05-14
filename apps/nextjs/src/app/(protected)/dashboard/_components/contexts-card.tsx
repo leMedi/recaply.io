@@ -1,5 +1,4 @@
 import { cn } from "@recaply/ui";
-import { Badge } from "@recaply/ui/badge";
 import { Button, buttonVariants } from "@recaply/ui/button";
 import { Card } from "@recaply/ui/card";
 import {
@@ -17,10 +16,9 @@ import {
 	TooltipTrigger,
 } from "@recaply/ui/tooltip";
 import Link from "next/link";
-import { Suspense } from "react";
 import { api } from "~/trpc/server";
-import { NextRecapDate } from "./recap-next-date";
 import { EnableContextBtn } from "./enable-context-btn";
+import { NextRecapDate } from "./recap-next-date";
 
 export async function ContextsCard() {
 	const providers = await api.providers.all();
@@ -63,9 +61,7 @@ export async function ContextsCard() {
 							<TableHead className="" />
 						</TableRow>
 					</TableHeader>
-					<Suspense fallback={<p>loading...</p>}>
-						<TableContent />
-					</Suspense>
+					<TableContent />
 				</Table>
 			</Card>
 		</div>

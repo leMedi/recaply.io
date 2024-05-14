@@ -1,14 +1,14 @@
 import { eventTrigger } from "@trigger.dev/sdk";
 import { z } from "zod";
 
-import { triggerOpenai, triggerDev, triggerResend } from "../client";
-import { Events, Jobs } from "../constants";
 import { and, db, eq, isNull, schema } from "@recaply/db";
-import { slack } from "@recaply/providers";
 import { Context } from "@recaply/db/schema/contexts";
 import { ProviderWithCreds } from "@recaply/db/schema/providers";
+import { slack } from "@recaply/providers";
+import { addMinutes } from "date-fns";
 import { nanoid } from "nanoid";
-import { subMinutes } from "date-fns";
+import { triggerDev, triggerOpenai, triggerResend } from "../client";
+import { Events } from "../constants";
 
 triggerDev.defineJob({
 	id: "SCHEDULE_RECAPE",
@@ -37,7 +37,7 @@ triggerDev.defineJob({
 
 		const nowUTC = getUTCDate();
 		nowUTC.setHours(Number(context.recapTime));
-		const backToUTC = subMinutes(nowUTC, context.timeZoneOffset);
+		const backToUTC = addMinutes(nowUTC, context.timeZoneOffset);
 
 		console.log("recap_time", context.recapTime, "UTC", backToUTC.getHours());
 		io.logger.info("recap_time", {
@@ -85,7 +85,7 @@ type Message = {
 
 const getUTCDate = () => {
 	const date = new Date();
-	return subMinutes(date, date.getTimezoneOffset());
+	return addMinutes(date, date.getTimezoneOffset());
 };
 
 triggerDev.defineJob({
