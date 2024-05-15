@@ -1,30 +1,30 @@
 {
-  "name": "create-t3-turbo",
-  "private": true,
-  "engines": {
-    "node": ">=20.12.0"
-  },
-  "packageManager": "pnpm@9.0.6",
-  "scripts": {
-    "build": "turbo build",
-    "clean": "git clean -xdf node_modules",
-    "clean:workspaces": "turbo clean",
-    "db:push": "pnpm -F db push",
-    "db:studio": "pnpm -F db studio",
-    "dev": "turbo dev --parallel",
-    "format": "turbo format --continue",
-    "format:fix": "turbo format:fix --continue",
-    "lint": "turbo lint --continue",
-    "lint:fix": "turbo lint:fix --continue",
-    "lint:ws": "pnpm dlx sherif@latest",
-    "postinstall": "pnpm lint:ws",
-    "typecheck": "turbo typecheck",
-    "ui-add": "pnpm -F ui ui-add"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.7.3",
-    "@turbo/gen": "^1.13.3",
-    "turbo": "^1.13.3",
-    "typescript": "^5.4.5"
-  }
+	"name": "recaply",
+	"private": true,
+	"engines": {
+		"node": ">=20.12.0"
+	},
+	"packageManager": "pnpm@9.0.6",
+	"scripts": {
+		"build": "turbo build",
+		"clean": "git clean -xdf node_modules",
+		"clean:workspaces": "turbo clean",
+		"db:push": "pnpm -F db push",
+		"db:studio": "pnpm -F db studio",
+		"dev": "turbo dev --parallel",
+		"format": "turbo format --continue",
+		"format:fix": "turbo format:fix --continue",
+		"lint": "turbo lint --continue",
+		"lint:fix": "turbo lint:fix --continue",
+		"lint:ws": "pnpm dlx sherif@latest",
+		"postinstall": "pnpm lint:ws",
+		"typecheck": "turbo typecheck",
+		"ui-add": "pnpm -F ui ui-add"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.7.3",
+		"@turbo/gen": "^1.13.3",
+		"turbo": "^1.13.3",
+		"typescript": "^5.4.5"
+	}
 }
