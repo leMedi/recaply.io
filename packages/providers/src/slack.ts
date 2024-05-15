@@ -54,9 +54,9 @@ export function generateSlackAuth0Url(userId: string) {
 }
 
 function getChannelType(channel: Channel): "public" | "private" | "im" {
-	// if(channel.) {
-	// 	return "im";
-	// }
+	if (channel.is_im) {
+		return "im";
+	}
 	if (channel.is_private) {
 		return "private";
 	}
@@ -95,11 +95,24 @@ export async function listChannels(accessToken: string) {
 
 	console.log(`Found ${channels.length} channels after ${reqCount} requests.`);
 
-	return channels.map((channel) => ({
-		id: channel.id!,
-		name: channel.name!,
-		type: getChannelType(channel),
-	}));
+	return Promise.all(
+		channels.map(async (channel) => {
+			let name = channel.name ?? "Unknown Channel";
+			if (channel.is_im) {
+				if (channel.user) {
+					name = (await getUserInfo(web, channel.user)) ?? "Unknown User";
+				} else {
+					name = "Unknown User";
+				}
+			}
+
+			return {
+				id: channel.id!,
+				name,
+				type: getChannelType(channel),
+			};
+		}),
+	);
 }
 
 export type SlackMessage = {

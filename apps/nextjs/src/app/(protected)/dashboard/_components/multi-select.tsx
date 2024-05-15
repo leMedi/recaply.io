@@ -16,6 +16,7 @@ import {
 import { Label } from "@recaply/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@recaply/ui/popover";
 import { useState } from "react";
+import { Trash2 } from "lucide-react";
 
 export function MultiSelect({
 	label,
@@ -76,13 +77,23 @@ export function MultiSelect({
 					</Command>
 				</PopoverContent>
 			</Popover>
-			<div className="flex gap-1 pt-4 pl-1">
-				<span>Selected Channels:</span>
-				{selectedValues.map((c) => (
-					<Badge key={c} variant={"outline"}>
-						# {c}
-					</Badge>
-				))}
+			<div className="flex flex-row pl-1 py-4 w-full">
+				<span className="w-[215px]">Selected Channels:</span>
+				<div className="flex grow gap-1 flex-wrap justify-start">
+					{selectedValues.map((c) => (
+						<Button
+							key={c}
+							variant={"outline"}
+							size="sm"
+							onClick={() => {
+								onSelectedValuesChange(selectedValues.filter((v) => v !== c));
+							}}
+						>
+							{options.find((option) => option.value === c)?.label ?? c}{" "}
+							<Trash2 className="ml-2 w-3" />
+						</Button>
+					))}
+				</div>
 			</div>
 		</div>
 	);
