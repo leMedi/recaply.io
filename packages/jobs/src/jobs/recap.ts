@@ -103,8 +103,8 @@ triggerDev.defineJob({
 		console.log("MAKE_RECAPE payload", payload);
 		console.log("MAKE_RECAPE ctx", ctx);
 
-		const contextId = Number(ctx.source!.id);
-		// const contextId = 1;
+		// const contextId = Number(ctx.source!.id);
+		const contextId = 2;
 
 		const context = await db.query.contexts.findFirst({
 			where: and(
@@ -120,8 +120,8 @@ triggerDev.defineJob({
 			throw new Error("Context not found");
 		}
 
-		const cutoffDate = subHours(new Date(), Number(context.recapTimeSpan));
-		// const cutoffDate = subDays(new Date(), 1);
+		// const cutoffDate = subHours(new Date(), Number(context.recapTimeSpan));
+		const cutoffDate = subDays(new Date(), 1);
 		const cuteOfTimestamp = cutoffDate.getTime() / 1000;
 
 		io.logger.debug("cuteOfTimestamp", {

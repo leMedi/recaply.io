@@ -19,10 +19,10 @@ export const metadata: Metadata = {
 			: "http://localhost:3000",
 	),
 	title: "Recaply",
-	description: "Daily audio recaps of your Slack messages",
+	description: "Stay Updated, Stay Ahead: Recap in a Snap",
 	openGraph: {
 		title: "Recaply",
-		description: "Daily audio recaps of your Slack messages",
+		description: "Stay Updated, Stay Ahead: Recap in a Snap",
 		url: env.NEXT_PUBLIC_URL,
 		siteName: "Recaply",
 	},

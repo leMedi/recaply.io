@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@recaply/ui";
-// import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { buttonVariants } from "@recaply/ui/button";
 // import { ModeToggle } from "./mode-toggle";
 import {
@@ -35,10 +35,10 @@ const routeList: RouteProps[] = [
 		href: "#testimonials",
 		label: "Testimonials",
 	},
-	{
-		href: "#pricing",
-		label: "Pricing",
-	},
+	// {
+	// 	href: "#pricing",
+	// 	label: "Pricing",
+	// },
 	{
 		href: "#faq",
 		label: "FAQ",
@@ -91,22 +91,17 @@ export const Navbar = () => {
 											{label}
 										</a>
 									))}
-									{/* <a
-										rel="noreferrer noopener"
-										href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-										target="_blank"
-										className={`w-[110px] border ${buttonVariants({
-											variant: "secondary",
-										})}`}
-									>
-										<GitHubLogoIcon className="mr-2 w-5 h-5" />
-										Github
-									</a> */}
 									<Link
-										href="/signin"
+										href="/signup"
 										className={cn(buttonVariants({ variant: "primary" }))}
 									>
-										Sign In
+										Sign Up
+									</Link>
+									<Link
+										href="/signin"
+										className={cn(buttonVariants({ variant: "outline" }))}
+									>
+										Login
 									</Link>
 								</nav>
 							</SheetContent>
@@ -130,20 +125,17 @@ export const Navbar = () => {
 					</nav>
 
 					<div className="hidden md:flex gap-2">
-						{/* <a
-							rel="noreferrer noopener"
-							href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-							target="_blank"
-							className={`border ${buttonVariants({ variant: "secondary" })}`}
-						>
-							<GitHubLogoIcon className="mr-2 w-5 h-5" />
-							Github
-						</a> */}
 						<Link
-							href="/signin"
+							href="/signup"
 							className={cn(buttonVariants({ variant: "primary" }))}
 						>
-							Sign In
+							Sign Up
+						</Link>
+						<Link
+							href="/signin"
+							className={cn(buttonVariants({ variant: "outline" }))}
+						>
+							Login
 						</Link>
 
 						<ThemeToggle />

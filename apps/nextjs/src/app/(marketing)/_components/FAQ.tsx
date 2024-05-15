@@ -13,33 +13,39 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
 	{
-		question: "Is this template free?",
-		answer: "Yes. It is a free ChadcnUI template.",
+		question: "What is Recaply?",
+		answer:
+			"Recaply is an AI-powered assistant that integrates with your communication platforms like Slack and Microsoft Teams to provide you with a concise audio summary of the most important events from the past 24 hours.",
 		value: "item-1",
 	},
 	{
-		question: "Lorem ipsum dolor sit amet consectetur adipisicing elit?",
+		question: "How does Recaply collect information?",
 		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+			"Recaply connects to your selected communication platforms and uses AI to sift through messages and notifications, identifying the most relevant updates.",
 		value: "item-2",
 	},
 	{
-		question:
-			"Lorem ipsum dolor sit amet  Consectetur natus dolores minus quibusdam?",
+		question: "Is my data secure?",
 		answer:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis necessitatibus maxime quis ipsa vitae cumque quo?",
+			"Absolutely. We prioritize your privacy and security. All data is encrypted, and we follow stringent protocols to ensure that your information remains confidential and secure.",
 		value: "item-3",
 	},
 	{
-		question: "Lorem ipsum dolor sit amet, consectetur adipisicing elit?",
-		answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+		question: "Can I customize my audio summaries?",
+		answer:
+			"Yes, you can tailor your audio summaries based on specific channels, keywords, or project updates to receive personalized and relevant information.",
 		value: "item-4",
 	},
 	{
-		question:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur natus?",
+		question: "What platforms does Recaply support?",
 		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+			"Recaply currently supports integration with Slack, We are continuously working on adding more platforms.",
+		value: "item-5",
+	},
+	{
+		question: "How often will I receive summaries??",
+		answer:
+			"You can customize when you receive your audio recap to best fit your schedule. Choose the specific time of day you'd like to receive your summary, whether it's in the morning, afternoon, or evening. Additionally, you can set the time span for your recap, such as the past 8 hours or the past 24 hours, ensuring you get the most relevant updates when you need them.",
 		value: "item-5",
 	},
 ];
@@ -65,17 +71,6 @@ export const FAQ = () => {
 					</AccordionItem>
 				))}
 			</Accordion>
-
-			<h3 className="font-medium mt-4">
-				Still have questions?{" "}
-				<a
-					rel="noreferrer noopener"
-					href="#contact-us"
-					className="text-primary transition-all border-primary hover:border-b-2"
-				>
-					Contact us
-				</a>
-			</h3>
 		</section>
 	);
 };

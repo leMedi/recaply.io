@@ -1,6 +1,6 @@
 import { FAQ } from "./_components/FAQ";
 import { Testimonials } from "./_components/Testimonials";
-import { ContactUs } from "./_components/contact-us";
+import { CTA } from "./_components/cta";
 import { FeaturesSection } from "./_components/features-section";
 import { Footer } from "./_components/footer";
 import { Hero } from "./_components/hero";
@@ -12,7 +12,7 @@ export default function HomePage() {
 			<FeaturesSection />
 			<Testimonials />
 			<FAQ />
-			<ContactUs />
+			<CTA />
 			<Footer />
 		</div>
 	);

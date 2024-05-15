@@ -14,30 +14,30 @@ interface Item {
 
 let notifications = [
 	{
-		name: "Payment received",
-		description: "Magic UI",
+		name: "New message",
+		description: "Slack",
 		time: "15m ago",
 
 		icon: "💸",
 		color: "#00C9A7",
 	},
 	{
-		name: "User signed up",
-		description: "Magic UI",
-		time: "10m ago",
-		icon: "👤",
-		color: "#FFB800",
-	},
-	{
-		name: "New message",
-		description: "Magic UI",
+		name: "New ticket",
+		description: "Jira",
 		time: "5m ago",
 		icon: "💬",
 		color: "#FF3D71",
 	},
 	{
-		name: "New event",
-		description: "Magic UI",
+		name: "New Member",
+		description: "Teams",
+		time: "10m ago",
+		icon: "👤",
+		color: "#FFB800",
+	},
+	{
+		name: "New invite",
+		description: "Google Meet",
 		time: "2m ago",
 		icon: "🗞️",
 		color: "#1E86FF",
@@ -85,7 +85,7 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
 
 export function AnimatedNotifications() {
 	return (
-		<div className="relative flex max-h-[400px] min-h-[400px] w-full max-w-[32rem] flex-col overflow-hidden rounded-lg border bg-background p-6 shadow-lg">
+		<div className="relative flex max-h-[400px] min-h-[400px] w-full max-w-[32rem] flex-col overflow-hidden">
 			<AnimatedList>
 				{notifications.map((item, idx) => (
 					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>

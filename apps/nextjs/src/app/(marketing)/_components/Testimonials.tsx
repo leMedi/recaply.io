@@ -16,46 +16,47 @@ interface TestimonialProps {
 
 const testimonials: TestimonialProps[] = [
 	{
-		image: "https://github.com/shadcn.png",
-		name: "John Doe React",
+		image: "/testimonials/1.jpg",
+		name: "Sarah T.",
 		userName: "@john_Doe",
-		comment: "This landing page is awesome!",
+		comment:
+			"The daily audio summaries are a game-changer for staying informed without the overwhelm.",
 	},
 	{
-		image: "https://github.com/shadcn.png",
-		name: "John Doe React",
+		image: "/testimonials/3.jpg",
+		name: "Mike J.",
 		userName: "@john_Doe1",
 		comment:
-			"Lorem ipsum dolor sit amet,empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+			"Recaply keeps me focused and productive by delivering only the most crucial updates. It's like having a personal assistant that filters out the noise and delivers the essentials, helping me stay on top of my tasks effortlessly.",
 	},
 
 	{
-		image: "https://github.com/shadcn.png",
-		name: "John Doe React",
+		image: "/testimonials/6.jpg",
+		name: "Emily R.",
 		userName: "@john_Doe2",
 		comment:
-			"Lorem ipsum dolor sit amet,exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+			"Recaply has transformed how I start my day. No more sifting through endless notifications! Now, I get a clear, concise audio summary of the most important updates, allowing me to focus on my priorities right from the get-go. It's a true productivity booster!",
 	},
 	{
-		image: "https://github.com/shadcn.png",
-		name: "John Doe React",
+		image: "/testimonials/4.jpg",
+		name: "John L.",
 		userName: "@john_Doe3",
 		comment:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+			"Integration was a breeze, and now I feel more on top of my tasks than ever.",
 	},
 	{
-		image: "https://github.com/shadcn.png",
-		name: "John Doe React",
+		image: "/testimonials/5.jpg",
+		name: "Jessica K.",
 		userName: "@john_Doe4",
 		comment:
-			"Lorem ipsum dolor sit amet, tempor incididunt  aliqua. Ut enim ad minim veniam, quis nostrud.",
+			"I love how Recaply consolidates everything into a quick, digestible audio summary.",
 	},
 	{
-		image: "https://github.com/shadcn.png",
-		name: "John Doe React",
+		image: "/testimonials/2.jpg",
+		name: "David M.",
 		userName: "@john_Doe5",
 		comment:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"Thanks to Recaply, I can keep up with important events even on my busiest days.",
 	},
 ];
 
@@ -68,12 +69,12 @@ export const Testimonials = () => {
 					{" "}
 					People Love{" "}
 				</span>
-				This Landing Page
+				Recaply
 			</h2>
 
 			<p className="text-xl text-muted-foreground pt-4 pb-8">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non unde error
-				facere hic reiciendis illo
+				Hear how Recaply is transforming productivity and focus for
+				professionals like you
 			</p>
 
 			<div className="grid md:grid-cols-2 lg:grid-cols-4 sm:block columns-2  lg:columns-3 lg:gap-6 mx-auto space-y-4 lg:space-y-6">
@@ -91,7 +92,7 @@ export const Testimonials = () => {
 
 								<div className="flex flex-col">
 									<CardTitle className="text-lg">{name}</CardTitle>
-									<CardDescription>{userName}</CardDescription>
+									{/* <CardDescription>{userName}</CardDescription> */}
 								</div>
 							</CardHeader>
 

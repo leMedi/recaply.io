@@ -8,19 +8,23 @@ export const Footer = () => {
 					<a
 						rel="noreferrer noopener"
 						href="/"
-						className="font-bold text-xl flex"
+						className="font-bold text-4xl flex"
 					>
-						{/* <LogoIcon /> */}
 						Recapily
 					</a>
+					<span className="text-gray-600 dark:text-gray-300 mt">
+						by{" "}
+						<a href="https://lemedi.dev" className="underline">
+							LeMedi
+						</a>
+					</span>
 				</div>
 
 				<div className="flex flex-col gap-2">
 					<h3 className="font-bold text-lg">Follow US</h3>
 					<div>
 						<a
-							rel="noreferrer noopener"
-							href="#dd"
+							href="https://github.com/leMedi"
 							className="opacity-60 hover:opacity-100"
 						>
 							Github
@@ -29,8 +33,7 @@ export const Footer = () => {
 
 					<div>
 						<a
-							rel="noreferrer noopener"
-							href="#dd"
+							href="https://twitter.com/Mehdi_ElHAIJ"
 							className="opacity-60 hover:opacity-100"
 						>
 							Twitter
@@ -39,11 +42,10 @@ export const Footer = () => {
 
 					<div>
 						<a
-							rel="noreferrer noopener"
-							href="#dd"
+							href="https://lemedi.dev"
 							className="opacity-60 hover:opacity-100"
 						>
-							Dribbble
+							Portfolio
 						</a>
 					</div>
 				</div>
@@ -63,10 +65,10 @@ export const Footer = () => {
 					<div>
 						<a
 							rel="noreferrer noopener"
-							href="#pricing"
+							href="#testimonials"
 							className="opacity-60 hover:opacity-100"
 						>
-							Pricing
+							Testimonials
 						</a>
 					</div>
 

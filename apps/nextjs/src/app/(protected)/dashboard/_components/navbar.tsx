@@ -34,14 +34,20 @@ export const DashboardNavbar = ({ user }: { user: Session["user"] }) => {
 		<header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
 			<NavigationMenu className="mx-auto">
 				<NavigationMenuList className="max-w-6xl h-14 px-4 w-screen flex justify-between">
-					<NavigationMenuItem className="font-bold flex">
+					<NavigationMenuItem className="flex items-end">
 						<Link
 							rel="noreferrer noopener"
 							href="/dashboard"
-							className="font-bold text-xl flex"
+							className="font-bold text-2xl flex"
 						>
 							Recaply
 						</Link>
+						<div className="hidden pb-1 pl-2 md:flex text-sm h-full justify-end text-gray-400 dark:text-gray-600">
+							By{" "}
+							<Link href="https://lemedi.dev" className="ml-1 underline">
+								LeMedi
+							</Link>
+						</div>
 					</NavigationMenuItem>
 
 					{/* mobile */}
