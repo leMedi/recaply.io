@@ -11,6 +11,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import "~/app/globals.css";
 
 import { env } from "~/env";
+import Script from "next/script";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(
@@ -54,6 +55,14 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 					<TRPCReactProvider>{props.children}</TRPCReactProvider>
 					<Toaster />
 				</ThemeProvider>
+
+				{env.NEXT_PUBLIC_URL === "https://recaply.io" && (
+					<Script
+						strategy="afterInteractive"
+						src="https://cloud.umami.is/script.js"
+						data-website-id="13b2ace0-8bc5-456d-87f3-2f5167f36419"
+					/>
+				)}
 			</body>
 		</html>
 	);
