@@ -1,8 +1,17 @@
-import { ConversationsListResponse, WebClient } from "@slack/web-api";
+import {
+	ConversationsHistoryResponse,
+	ConversationsListResponse,
+	WebClient,
+} from "@slack/web-api";
 import { env } from "./env";
 
 type Channel = Exclude<
 	ConversationsListResponse["channels"],
+	undefined
+>[number];
+
+type MessageElement = Exclude<
+	ConversationsHistoryResponse["messages"],
 	undefined
 >[number];
 
@@ -125,25 +134,38 @@ export const getSlackChannelMessages = async (
 		});
 
 		const web = new WebClient(token);
+		let cursor: string | undefined;
+		const rawMessages: MessageElement[] = [];
+		do {
+			const result = await web.conversations.history({
+				channel: channelId,
+				cursor,
+				oldest: cutoffDate.toString(),
+				inclusive: true,
+				limit: 100,
+			});
 
-		const result = await web.conversations.history({
-			channel: channelId,
-			// oldest: "1715122163.464",
-			oldest: cutoffDate.toString(),
-			include_all_metadata: true,
-			inclusive: true,
-		});
+			if (!result.ok || result.messages === undefined) {
+				throw new Error(
+					`Failed to retrieve messages for channel ${channelId}: ${result.error}`,
+				);
+			}
 
-		if (!result.ok || result.messages === undefined) {
-			throw new Error(`Failed to retrieve messages: ${result.error}`);
-		}
+			const filteredMessages = result.messages.filter(
+				(message) =>
+					message.subtype === undefined ||
+					!ignoredSubtypes.includes(message.subtype),
+			);
 
-		console.log(
-			`Channel ${channelId}: ${result.messages.length} messages found.`,
-		);
+			rawMessages.push(...filteredMessages);
+
+			cursor = result.response_metadata?.next_cursor;
+		} while (cursor);
+
+		console.log(`Channel ${channelId}: ${rawMessages.length} messages found.`);
 
 		const output: SlackMessage[] = [];
-		for (const message of result.messages) {
+		for (const message of rawMessages) {
 			let username = message.user;
 			if (username) {
 				username = await getUserInfo(web, username);
@@ -161,6 +183,47 @@ export const getSlackChannelMessages = async (
 		}
 
 		return output;
+	} catch (error) {
+		console.error(error);
+		throw error;
+	}
+};
+
+export const getSlackMessagesPage = async (
+	token: string,
+	cursor: string | undefined,
+	channelId: string,
+	cutoffDate: number,
+) => {
+	try {
+		console.log("getSlackChannelMessages", {
+			token,
+			channelId,
+			cutoffDate,
+		});
+
+		const web = new WebClient(token);
+
+		const result = await web.conversations.history({
+			channel: channelId,
+			cursor: cursor,
+			oldest: cutoffDate.toString(),
+			include_all_metadata: true,
+			inclusive: true,
+		});
+
+		if (!result.ok || result.messages === undefined) {
+			throw new Error(`Failed to retrieve messages: ${result.error}`);
+		}
+
+		return {
+			messages: result.messages.map((message) => ({
+				ts: message,
+				user: message.user,
+				text: message.text,
+			})),
+			nextCursor: result.response_metadata?.next_cursor,
+		};
 	} catch (error) {
 		console.error(error);
 		throw error;

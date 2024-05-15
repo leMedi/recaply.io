@@ -5,7 +5,7 @@ import { and, db, eq, isNull, schema } from "@recaply/db";
 import { Context } from "@recaply/db/schema/contexts";
 import { ProviderWithCreds } from "@recaply/db/schema/providers";
 import { slack } from "@recaply/providers";
-import { addMinutes } from "date-fns";
+import { addMinutes, subDays, subHours } from "date-fns";
 import { nanoid } from "nanoid";
 import { triggerDev, triggerOpenai, triggerResend } from "../client";
 import { Events } from "../constants";
@@ -102,12 +102,12 @@ triggerDev.defineJob({
 		console.log("MAKE_RECAPE ctx", ctx);
 
 		const contextId = Number(ctx.source!.id);
-		// const contextId = 5;
+		// const contextId = 1;
 
 		const context = await db.query.contexts.findFirst({
 			where: and(
-				eq(schema.providers.id, contextId),
-				isNull(schema.providers.deletedAt),
+				eq(schema.contexts.id, contextId),
+				isNull(schema.contexts.deletedAt),
 			),
 			with: {
 				user: true,
@@ -118,9 +118,8 @@ triggerDev.defineJob({
 			throw new Error("Context not found");
 		}
 
-		const cutoffDate = getUTCDate();
-		// cutoffDate.setDate(cutoffDate.getDate() - 5);
-		cutoffDate.setHours(cutoffDate.getHours() - Number(context.recapTimeSpan));
+		const cutoffDate = subHours(new Date(), Number(context.recapTimeSpan));
+		// const cutoffDate = subDays(new Date(), 1);
 		const cuteOfTimestamp = cutoffDate.getTime() / 1000;
 
 		io.logger.debug("cuteOfTimestamp", {
@@ -158,6 +157,7 @@ triggerDev.defineJob({
 								cuteOfTimestamp,
 							});
 
+							// TODO: handle pagination in io.runTask
 							const channelMessages = await io.runTask(
 								"SLACK_CHANNEL_MESSAGES",
 								async () => {
@@ -226,7 +226,6 @@ triggerDev.defineJob({
 
 		// TODO: generate audio
 
-		// send email recap
 		await io.resend.emails.send("recap-ready", {
 			to: context.user.email,
 			subject: `Your recap for ${context.name} is ready`,
@@ -255,6 +254,11 @@ Recaply Team
 function getPromptToSummariseMessages(context: string, messages: Message[]) {
 	return `You are Recaply my assitant and I need me a bried summary of the important things discussed in the past 24 hours of messages related to the context
 make it short and in paragraphs, if there are not important things just say that there are no important things discussed
+
+addintional instructions:
+- don't include any links
+- don't include any code
+- refre to the people by their first name only
 
 <context>
 ${context}
