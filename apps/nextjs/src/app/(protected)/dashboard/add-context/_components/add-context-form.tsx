@@ -230,7 +230,7 @@ export function RecapTimeSelect() {
 				<FormItem>
 					<FormLabel>Recap Time</FormLabel>
 					<FormControl>
-						<Select>
+						<Select defaultValue={form.formState.defaultValues?.recapTime}>
 							<SelectTrigger>
 								<SelectValue placeholder="Select a recap time" />
 							</SelectTrigger>
@@ -265,7 +265,7 @@ export function RecapSpan() {
 				<FormItem>
 					<FormLabel>Recap Time Span</FormLabel>
 					<FormControl>
-						<Select>
+						<Select defaultValue={form.formState.defaultValues?.recapTimeSpan}>
 							<SelectTrigger>
 								<SelectValue placeholder="Select recap time span" />
 							</SelectTrigger>
