@@ -23,7 +23,8 @@
 		"@trigger.dev/resend": "^2.3.18",
 		"@trigger.dev/sdk": "^2.3.18",
 		"date-fns": "^3.6.0",
-		"nanoid": "^5.0.7"
+		"nanoid": "^5.0.7",
+		"openai": "^4.45.0"
 	},
 	"devDependencies": {
 		"@recaply/providers": "workspace:*",

@@ -9,6 +9,8 @@ import { addMinutes, subDays, subHours } from "date-fns";
 import { nanoid } from "nanoid";
 import { triggerDev, triggerOpenai, triggerResend } from "../client";
 import { Events } from "../constants";
+import OpenAI from "openai";
+import { env } from "../env";
 
 triggerDev.defineJob({
 	id: "SCHEDULE_RECAPE",
@@ -138,7 +140,7 @@ triggerDev.defineJob({
 				// if (provider.type === "slack")
 
 				const providerMessages = await io.runTask(
-					"PROVIDER_MESSAGES",
+					`PROVIDER_MESSAGES_${config.type}_${config.providerId}`,
 					async () => {
 						const provider = await db.query.providers.findFirst({
 							where: and(
@@ -159,7 +161,7 @@ triggerDev.defineJob({
 
 							// TODO: handle pagination in io.runTask
 							const channelMessages = await io.runTask(
-								"SLACK_CHANNEL_MESSAGES",
+								`SLACK_CHANNEL_${channel}_MESSAGES`,
 								async () => {
 									return slack.getSlackChannelMessages(
 										(provider as ProviderWithCreds).creds.accessToken,
@@ -203,11 +205,15 @@ triggerDev.defineJob({
 		// summarize messages
 		const _context = `${context.name} - ${context.description}`;
 		const completion = await io.openai.chat.completions.create("recap", {
-			model: "gpt-3.5-turbo",
+			model: "gpt-4o",
 			messages: [
 				{
 					role: "user",
-					content: getPromptToSummariseMessages(_context, messages),
+					content: getPromptToSummariseMessages(
+						context.user.name ?? "",
+						_context,
+						messages,
+					),
 				},
 			],
 		});
@@ -218,6 +224,11 @@ triggerDev.defineJob({
 
 		const recap = completion.choices[0]!.message.content;
 
+		if (!recap) {
+			io.logger.info("no important things discussed");
+			return;
+		}
+
 		io.logger.info("recap done", {
 			recap,
 		});
@@ -225,6 +236,22 @@ triggerDev.defineJob({
 		await io.wait("take a breath", 10);
 
 		// TODO: generate audio
+		const b64AudioRecap = await io.runTask("AUDIO", async () => {
+			const openai = new OpenAI({
+				apiKey: env.OPENAI_API_KEY,
+			});
+
+			const audioRecapStream = await openai.audio.speech.create({
+				model: "tts-1",
+				voice: "shimmer",
+				speed: 1,
+				input: recap,
+			});
+
+			return Buffer.from(await audioRecapStream.arrayBuffer()).toString(
+				"base64",
+			);
+		});
 
 		await io.resend.emails.send("recap-ready", {
 			to: context.user.email,
@@ -236,14 +263,12 @@ ${recap}
 Regards,
 Recaply Team
 			`,
-			// attachments: [
-			// 	{
-			// 		filename: `invoice-${invoice.number}.pdf`,
-			// 		content: (
-			// 			await streamToBuffer(stream as unknown as NodeJS.ReadableStream)
-			// 		).toString("base64"),
-			// 	},
-			// ],
+			attachments: [
+				{
+					filename: `${context.name}-summary.mp3`,
+					content: b64AudioRecap,
+				},
+			],
 			headers: {
 				"X-Entity-Ref-ID": nanoid(),
 			},
@@ -251,9 +276,14 @@ Recaply Team
 	},
 });
 
-function getPromptToSummariseMessages(context: string, messages: Message[]) {
-	return `You are Recaply my assitant and I need me a bried summary of the important things discussed in the past 24 hours of messages related to the context
+function getPromptToSummariseMessages(
+	userName: string,
+	context: string,
+	messages: Message[],
+) {
+	return `You are Recaply my assitant and I need me a bried summary of the things discussed in the past 24 hours of messages related to the context
 make it short and in paragraphs, if there are not important things just say that there are no important things discussed
+also my name is ${userName}
 
 addintional instructions:
 - don't include any links

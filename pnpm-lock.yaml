@@ -265,6 +265,9 @@ importers:
       nanoid:
         specifier: ^5.0.7
         version: 5.0.7
+      openai:
+        specifier: ^4.45.0
+        version: 4.45.0(encoding@0.1.13)
     devDependencies:
       '@recaply/providers':
         specifier: workspace:*
