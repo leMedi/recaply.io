@@ -18,8 +18,8 @@ export function FeaturesSection() {
 
 				<div className="mt-20">
 					<div className="gap-6 space-y-12 md:flex md:space-y-0">
-						<div className="relative md:w-1/2 ">
-							<div className="pt-12 pr-20 flex flex-col justify-center transition duration-500 md:absolute visible opacity-100 scale-100">
+						<div className="relative md:w-1/2">
+							<div className="pt-12 lg:pr-20 flex flex-col justify-center transition duration-500 md:absolute visible opacity-100 scale-100">
 								<div>
 									<h3 className="text-2xl font-bold text-gray-900 dark:text-white md:text-2xl">
 										Overcome Notification Overload
@@ -81,7 +81,7 @@ export function FeaturesSection() {
 						</div>
 						<div className="overflow-hidden sm:-mx-12 sm:px-12 md:mx-0 md:w-1/2 md:overflow-visible md:px-0">
 							<div className="relative bg-gray-100 before:absolute before:inset-0 before:scale-x-110 before:border-y before:border-gray-200 after:absolute after:inset-0 after:scale-y-110 after:border-x after:border-gray-200 dark:bg-gray-800 dark:before:border-gray-700 dark:after:border-gray-700">
-								<div className="h-96 overflow-clip py-10 sm:h-[32rem] lg:px-20 pt-28">
+								<div className="flex justify-center px-4 h-96 overflow-clip py-10 sm:h-[32rem] pt-28">
 									<AnimatedNotifications />
 								</div>
 							</div>
@@ -93,13 +93,13 @@ export function FeaturesSection() {
 					<div className="gap-6 space-y-12 md:flex md:space-y-0">
 						<div className="overflow-hidden sm:-mx-12 sm:px-12 md:mx-0 md:w-1/2 md:overflow-visible md:px-0">
 							<div className="relative bg-gray-100 before:absolute before:inset-0 before:scale-x-110 before:border-y before:border-gray-200 after:absolute after:inset-0 after:scale-y-110 after:border-x after:border-gray-200 dark:bg-gray-800 dark:before:border-gray-700 dark:after:border-gray-700">
-								<div className="h-96 overflow-clip py-10 sm:h-[32rem] lg:px-20">
+								<div className="flex justify-center h-96 overflow-clip py-10 sm:h-[32rem]">
 									<HeroBeam />
 								</div>
 							</div>
 						</div>
 						<div className="relative md:w-1/2">
-							<div className="pt-12 pl-20 flex flex-col justify-center transition duration-500 md:absolute visible opacity-100 scale-100">
+							<div className="pt-12 lg:pl-20 flex flex-col justify-center transition duration-500 md:absolute visible opacity-100 scale-100">
 								<div>
 									<h3 className="text-2xl font-bold text-gray-900 dark:text-white md:text-2xl">
 										Automated Summaries

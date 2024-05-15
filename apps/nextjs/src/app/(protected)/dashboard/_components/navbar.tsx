@@ -24,7 +24,6 @@ import {
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { MdLogout } from "react-icons/md";
 import { getInitials } from "~/utils/strings";
 import { LogoutButton } from "./logout-button";
 

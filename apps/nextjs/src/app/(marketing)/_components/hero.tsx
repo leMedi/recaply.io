@@ -30,7 +30,7 @@ export function Hero() {
 	}, []);
 
 	return (
-		<section className="pt-26 sm:pt-20 md:pt-40">
+		<section className="pt-20 md:pt-40">
 			<div>
 				<RetroGrid className="" />
 				<motion.div
@@ -48,15 +48,13 @@ export function Hero() {
 						ease: "easeInOut",
 					}}
 				>
-					<div className="text-center text-xl font-bold text-blue-900 dark:text-white sm:text-6xl lg:text-4xl">
-						<h2 className="text-center text-xl lg:text-4xl">
-							Unplug, Listen, Inform
-						</h2>
-						<h1 className="lg:text-7xl  bg-gradient-to-r from-primary to-[#957fef] bg-clip-text text-transparent dark:from-primaryLight dark:to-secondaryLight">
+					<div className="text-center text-3xl font-bold text-blue-900 dark:text-white lg:text-4xl">
+						<h2 className="text-center">Unplug, Listen, Inform</h2>
+						<h1 className="text-5xl lg:text-7xl bg-gradient-to-r from-primary to-[#957fef] bg-clip-text text-transparent dark:from-primaryLight dark:to-secondaryLight">
 							Your Day in a Minute
 						</h1>
 					</div>
-					<span className="block mt-4 text-xl text-center text-gray-600 dark:text-gray-300">
+					<span className="block mt-4 text-xl text-center text-gray-600 dark:text-gray-300 px-4 lg:px-0">
 						Your daily audio summary from Slack, Teams, and more. Stay updated
 						effortlessly!
 					</span>
@@ -75,7 +73,7 @@ export function Hero() {
 				</motion.div>
 			</div>
 
-			<div className="flex justify-center">
+			<div className="flex justify-center px-6">
 				<motion.div
 					initial={{
 						opacity: 0,
