@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const Footer = () => {
 	return (
 		<footer id="footer">
@@ -52,6 +54,12 @@ export const Footer = () => {
 
 				<div className="flex flex-col gap-2">
 					<h3 className="font-bold text-lg">About</h3>
+					<div>
+						<Link href="/blog" className="opacity-60 hover:opacity-100">
+							Blog
+						</Link>
+					</div>
+
 					<div>
 						<a
 							rel="noreferrer noopener"

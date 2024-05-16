@@ -1,16 +1,17 @@
 {
-	"extends": "@recaply/tsconfig/base.json",
-	"compilerOptions": {
-		"lib": ["es2022", "dom", "dom.iterable"],
-		"jsx": "preserve",
-		"baseUrl": ".",
-		"paths": {
-			"~/*": ["./src/*"]
-		},
-		"plugins": [{ "name": "next" }],
-		"tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-		"module": "esnext"
-	},
-	"include": [".", ".next/types/**/*.ts"],
-	"exclude": ["node_modules"]
+  "extends": "@recaply/tsconfig/base.json",
+  "compilerOptions": {
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
+    },
+    "plugins": [{ "name": "next" }],
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "module": "esnext"
+  },
+  "include": [".", ".next/types/**/*.ts", ".contentlayer/generated"],
+  "exclude": ["node_modules"]
 }
