@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		.filter((post) => post.published)
 		.sort((a, b) => b.date.localeCompare(a.date))
 		.map((post) => ({
-			url: `https://recaply.io/${post.url}`,
+			url: `https://recaply.io${post.url}`,
 			lastModified: new Date(post.date),
 			changeFrequency: "weekly" as const,
 			priority: 0.5,
