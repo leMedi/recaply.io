@@ -1,3 +1,4 @@
+import { Footer } from "./_components/footer";
 import { Navbar } from "./_components/navbar";
 
 export default function MarketingLayout(props: { children: React.ReactNode }) {
@@ -5,6 +6,7 @@ export default function MarketingLayout(props: { children: React.ReactNode }) {
 		<div>
 			<Navbar />
 			{props.children}
+			<Footer />
 		</div>
 	);
 }

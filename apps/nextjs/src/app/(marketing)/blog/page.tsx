@@ -1,10 +1,12 @@
 import { allPosts } from "contentlayer/generated";
 import PostCard from "./_components/post-card";
+import PostsList from "./_components/posts-list";
 
 export default function Blog() {
 	const posts = allPosts
 		.filter((post) => post.published)
-		.sort((a, b) => b.date.localeCompare(a.date));
+		.sort((a, b) => b.date.localeCompare(a.date))
+		.slice(0, 14);
 
 	return (
 		<div className="flex justify-center py-20">
@@ -19,11 +21,7 @@ export default function Blog() {
 						/>
 					))}
 				</div>
-				<div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3 ">
-					{posts.slice(2, 14).map((post) => (
-						<PostCard key={post._id} post={post} aspect="square" />
-					))}
-				</div>
+				<PostsList initialList={posts.slice(2)} />
 			</div>
 		</div>
 	);
