@@ -12,7 +12,7 @@ export const Footer = () => {
 						href="/"
 						className="font-bold text-4xl flex"
 					>
-						Recapily
+						Recaply
 					</a>
 					<span className="text-gray-600 dark:text-gray-300 mt">
 						by{" "}
