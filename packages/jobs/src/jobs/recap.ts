@@ -233,6 +233,11 @@ triggerDev.defineJob({
 			recap,
 		});
 
+		if (recap === "NO_IMPORTANT_THINGS_DISCUSSED") {
+			io.logger.info("no important things discussed");
+			return;
+		}
+
 		await io.wait("take a breath", 10);
 
 		// TODO: generate audio
@@ -289,6 +294,7 @@ addintional instructions:
 - don't include any links
 - don't include any code
 - refre to the people by their first name only
+- if no important things discussed just as a response only 'NO_IMPORTANT_THINGS_DISCUSSED' and don't include any other text.
 
 <context>
 ${context}
